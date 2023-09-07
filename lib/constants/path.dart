@@ -1,4 +1,8 @@
-final String SERVER_BASE_URL = 'http://192.168.219.102/api/v1';
+
+
+///각각의 상수는 해당 경로의 식별자
+///라우팅 또는 네트워크 요청 등에 사용
+final String SERVER_BASE_URL = 'http://172.30.1.70/api/v1';
 final String PATH_SPLASH = '/a';
 final String PATH_HOME = '/';
 final String PATH_SIGNIN = '/signin';

@@ -4,7 +4,7 @@ import 'package:sip_app/constants/app_constants.dart';
 import 'package:sip_app/constants/colors.dart';
 import 'package:sip_app/modules/category/widgets/horizontal_category_list.dart';
 
-class ExpertsAppBar extends StatelessWidget with PreferredSizeWidget {
+class ExpertsAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(97.0);
 

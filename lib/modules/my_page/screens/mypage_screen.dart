@@ -24,7 +24,7 @@ class MypageScreen extends ConsumerWidget {
         )
       ),
       backgroundColor: Colors.white,
-      bottomNavigationBar: MainBottomNavigationBar(bottomTabIndex: 4),
+      bottomNavigationBar: MainBottomNavigationBar(bottomTabIndex: 3),
     );
   }
 }

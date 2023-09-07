@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sip_app/constants/colors.dart';
 
-class MainAppBar extends StatelessWidget with PreferredSizeWidget {
+class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   // const MainAppBar({Key? key}) : super(key: key);
 
   @override

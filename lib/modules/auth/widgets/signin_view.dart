@@ -12,10 +12,15 @@ import 'package:sip_app/modules/auth/providers/signin_provider.dart';
 import 'package:sip_app/modules/auth/widgets/signin_email_input_widget.dart';
 import 'package:sip_app/modules/auth/widgets/signin_password_input_widget.dart';
 import 'package:sip_app/utils/jwt.dart';
+///로그인 화면을 구성하는 코드
+
+
+//로그인 화면의 전체 컨텐츠를 포함
 
 class SigninView extends StatelessWidget {
   const SigninView({Key? key}) : super(key: key);
 
+  //SigninLogo 위젯과 SigninForm 위젯을 자식으로 포함
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -31,7 +36,7 @@ class SigninView extends StatelessWidget {
     ));
   }
 }
-
+//로그인 화면 상단에 로고 이미지를 표시하는 위젯
 class SigninLogo extends StatelessWidget {
   const SigninLogo({Key? key}) : super(key: key);
 
@@ -67,16 +72,17 @@ class SigninLogo extends StatelessWidget {
     );
   }
 }
-
+//실제 로그인 폼을 구성하는 위젯
+//ConsumerWidget을 사용하여 상태 관리에 접근
 class SigninForm extends ConsumerWidget {
   final _formKey = GlobalKey<FormState>();
-
+// 실제 로그인 폼을 구성하는 위젯
   SigninForm();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Form(
-      key: _formKey,
+      key: _formKey,//폼의 상태를 관리하기 위한 GlobalKey
       child: Column(
         children: <Widget>[
           Container(
@@ -89,7 +95,7 @@ class SigninForm extends ConsumerWidget {
                     fontWeight: FontWeight.w500),
               )),
           const SizedBox(height: 10),
-          SigninEmailInput(),
+          SigninEmailInput(), // 이메일을 입력할 수 있는 커스텀 위젯
           const SizedBox(height: 20),
           Container(
               alignment: Alignment.centerLeft,
@@ -101,7 +107,7 @@ class SigninForm extends ConsumerWidget {
                     fontWeight: FontWeight.w400),
               )),
           const SizedBox(height: 10),
-          SigninPasswordInput(),
+          SigninPasswordInput(), // 비밀번호를 입력할 수 있는 커스텀 위젯
           const SizedBox(height: 20),
 
           // 로그인 버튼
@@ -111,6 +117,7 @@ class SigninForm extends ConsumerWidget {
             height: 48,
             child: ElevatedButton(
               onPressed: () {
+                // TODO: 로그인 버튼 클릭 시 동작 구현
                 ref.read(signinProvider.notifier).onSignin(context);
               },
               style: ElevatedButton.styleFrom(
@@ -151,12 +158,15 @@ class SigninForm extends ConsumerWidget {
                   Expanded(
                     flex: 1,
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // TODO: 회원가입 버튼 클릭 시 동작 구현
+
+                      },
                       style: OutlinedButton.styleFrom(
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(8))),
                         side:
-                            const BorderSide(width: 1.0, color: Colors.primary),
+                            const BorderSide(width: 1.0, color: Colors.black12),
                       ),
                       child: const Text('회원가입',
                           style: TextStyle(
@@ -174,7 +184,7 @@ class SigninForm extends ConsumerWidget {
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(8))),
                         side:
-                            const BorderSide(width: 1.0, color: Colors.primary),
+                            const BorderSide(width: 1.0, color: Colors.black12),
                       ),
                       child: const Text(
                         '아이디/비밀번호 찾기',
@@ -196,7 +206,7 @@ class SigninForm extends ConsumerWidget {
             child: ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState != null) {
-                  // Perform login action
+                  // TODO: 네이버 로그인 버튼 클릭 시 동작 구현
                 }
               },
               style: ElevatedButton.styleFrom(
@@ -205,7 +215,7 @@ class SigninForm extends ConsumerWidget {
                   ),
                   textStyle: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.w500), // 텍스트 스타일
-                  backgroundColor: Colors.greenE34,
+                  backgroundColor: Colors.green,
                   minimumSize: const Size(double.infinity, 0)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -236,7 +246,7 @@ class SigninForm extends ConsumerWidget {
             child: ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState != null) {
-                  // Perform login action
+                  // TODO: 카카오 로그인 버튼 클릭 시 동작 구현
                 }
               },
               style: ElevatedButton.styleFrom(
@@ -244,8 +254,8 @@ class SigninForm extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   textStyle: const TextStyle(
-                      fontSize: 20, color: Colors.blackc1c), // 텍스트 스타일
-                  backgroundColor: Colors.yellow500,
+                      fontSize: 20, color: Colors.black), // 텍스트 스타일
+                  backgroundColor: Colors.yellow,
                   minimumSize: const Size(double.infinity, 0)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

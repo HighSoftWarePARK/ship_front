@@ -8,7 +8,7 @@ List<MainCategoryModel> categories = [
   MainCategoryModel(id: 1, path: 'https://via.placeholder.com/150', name: '돼지'),
 ];
 
-class ServicesAppBar extends StatelessWidget with PreferredSizeWidget {
+class ServicesAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
 
   const ServicesAppBar({required this.title, Key? key}) : super();

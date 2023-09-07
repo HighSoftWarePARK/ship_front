@@ -8,7 +8,7 @@ class MypageNotificationsView extends StatelessWidget {
       children: [
         NotificationItem(label: '매칭 알림'),
         NotificationItem(label: '채팅 알림'),
-        NotificationItem(label: '커뮤니티 알림'),
+       NotificationItem(label: '커뮤니티 알림'),
         NotificationItem(label: '시프 소식 알림'),
       ],
     );

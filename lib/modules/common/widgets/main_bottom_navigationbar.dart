@@ -8,7 +8,7 @@ List<String> pages = [
   PATH_HOME,
   PATH_EXPERTS,
   PATH_WHOLESALES,
-  PATH_COMMUNITIES,
+ // PATH_COMMUNITIES,
   PATH_MYPAGE,
   // PATH_SIGNIN
 ];
@@ -91,22 +91,22 @@ class MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
               )),
           label: '도소매 보기',
         ),
-        BottomNavigationBarItem(
-          activeIcon: SizedBox(
-            width: 24,
-            height: 24,
-            child: SvgPicture.asset(
-              'assets/icons/icon_community_selected.svg',
-            ),
-          ),
-          icon: SizedBox(
-              width: 24,
-              height: 24,
-              child: SvgPicture.asset(
-                'assets/icons/icon_community.svg',
-              )),
-          label: '커뮤니티',
-        ),
+        // BottomNavigationBarItem(
+        //   activeIcon: SizedBox(
+        //     width: 24,
+        //     height: 24,
+        //     child: SvgPicture.asset(
+        //       'assets/icons/icon_community_selected.svg',
+        //     ),
+        //   ),
+        //   icon: SizedBox(
+        //       width: 24,
+        //       height: 24,
+        //       child: SvgPicture.asset(
+        //         'assets/icons/icon_community.svg',
+        //       )),
+        //   label: '커뮤니티',
+        // ),
         BottomNavigationBarItem(
           activeIcon: SizedBox(
             width: 24,
@@ -127,7 +127,7 @@ class MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
       onTap: onTap,
       type: BottomNavigationBarType.fixed,
       currentIndex: bottomTabIndex,
-      selectedItemColor: Colors.black72D,
+      selectedItemColor: Colors.black,
       unselectedItemColor: Color.fromARGB(255, 86, 29, 29),
       // selectedFontSize: 10,
       // unselectedFontSize: 10,
@@ -142,7 +142,7 @@ class MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
         fontWeight: FontWeight.w500,
         height: 2,
         fontSize: 10,
-        color: Colors.gray999,
+        color: Colors.grey,
       ),
     );
   }

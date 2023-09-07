@@ -30,51 +30,66 @@ import 'package:sip_app/modules/service_center/screens/service_center_screen.dar
 import 'package:sip_app/modules/wishlist/screens/mypage_wishlist_screen.dart';
 import 'package:sip_app/modules/auth/screens/splash_screen.dart';
 import 'package:sip_app/modules/wholesaler/screens/wholesales_screen.dart';
-
+//Flutter 애플리케이션 내에서 화면 전환 및 라우팅을 관리하기 위한 라우팅 설정
 final GoRouter goRouter = GoRouter(
-  initialLocation: PATH_SPLASH,
+  initialLocation: PATH_SPLASH,// 앱 시작 시 초기 경로
   // initialLocation: PATH_SIGNIN,
   routes: [
     GoRoute(
-        path: '/signup',
+        path: '/signup', // '/signup' 경로에 대한 설정
         pageBuilder: (_, state) => NoTransitionPage(child: SignupNameScreen()),
         routes: [
           GoRoute(
-              path: 'email',
+              path: 'email', //'/signup/email' 경로 설정
               pageBuilder: (_, state) => NoTransitionPage(child: SignupEmailScreen()),
           ),
           GoRoute(
-            path: 'phone',
+            path: 'phone', // '/signup/phone' 경로 설정
             pageBuilder: (_, state) => NoTransitionPage(child: SignupPhoneScreen()),
           ),
           GoRoute(
-            path: 'password',
+            path: 'password', // '/signup/password' 경로 설정
             pageBuilder: (_, state) => NoTransitionPage(child: SignupPasswordScreen()),
           ),
         ]
     ),
+    // '/test' 경로 설정
     GoRoute(
         path: '/test',
         pageBuilder: (_, state) => NoTransitionPage(child: ExpertMatchingDetailScreen())),
+    // PATH_SPLASH에 대한 경로 설정
     GoRoute(
         path: PATH_SPLASH,
         pageBuilder: (_, state) => NoTransitionPage(child: SplashScreen())),
+    // PATH_SIGNIN에 대한 경로 설정
     GoRoute(
         path: PATH_SIGNIN,
         pageBuilder: (_, state) => NoTransitionPage(child: SigninScreen())),
+     // PATH_HOME에 대한 경로 설정
     GoRoute(
+      // home 경로에 대한 설정:
+      // pageBuilder 함수는 HomeScreen() 위젯을 생성하여 페이지로 사용합니다.
         path: PATH_HOME,
         pageBuilder: (_, state) => NoTransitionPage(child: HomeScreen()),
         routes: [
+          //home/markets 경로에 대한 설정:
+          // builder 함수는 MarketsScreen() 위젯을 생성하여 반환합니다.
           GoRoute(
               path: 'markets',
               builder: (context, state) {
                 return MarketsScreen();
               },
+              // '/home/markets/detail/:id' 경로 설정
               routes: [
                 GoRoute(
+                  // 경로는 동적인 파라미터 :id를 포함하며, 해당 파라미터는 경로 파라미터로 사용됩니다
+                  ///home/markets/detail/:id 경로로 이동할 때 MarketDetailScreen()을 렌더링하며,
+                  /// 경로 파라미터와 쿼리 파라미터를 활용하여 화면을 초기화합니다.
+                  /// 이를 통해 앱 내에서 다양한 경로와 화면 간의 전환 및 데이터 전달이 가능해집니다.
                     path: 'detail/:id',
                     name: 'marketDetail',
+                    // builder 함수는 MarketDetailScreen() 위젯을 생성하고,
+                    // 경로 파라미터 id와 쿼리 파라미터 marketName을 이용하여 위젯을 초기화합니다
                     builder: (context, state) {
                       return MarketDetailScreen(
                         marketId: state.pathParameters['id'] ?? '0',
@@ -110,10 +125,10 @@ final GoRouter goRouter = GoRouter(
     GoRoute(
         path: PATH_WHOLESALES,
         pageBuilder: (_, state) => NoTransitionPage(child: WholesalesScreen())),
-    GoRoute(
-        path: PATH_COMMUNITIES,
-        pageBuilder: (_, state) =>
-            NoTransitionPage(child: CommunitiesScreen())),
+    // GoRoute(
+    //     path: PATH_COMMUNITIES,
+    //     pageBuilder: (_, state) =>
+    //         NoTransitionPage(child: CommunitiesScreen())),
     GoRoute(
         path: PATH_MYPAGE,
         pageBuilder: (_, state) => NoTransitionPage(child: MypageScreen()),
@@ -189,11 +204,11 @@ final GoRouter goRouter = GoRouter(
                   }),
             ]
           ),
-          GoRoute(
-              path: 'communities',
-              builder: (context, state) {
-                return CommunitylistManageScreen();
-              }),
+          // GoRoute(
+          //     path: 'communities',
+          //     builder: (context, state) {
+          //       return CommunitylistManageScreen();
+          //     }),
           GoRoute(
               path: 'notifications',
               builder: (context, state) {

@@ -1,38 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:sip_app/constants/colors.dart';
 import 'package:sip_app/modules/main/models/banner_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:sip_app/modules/main/widgets/banners_view_button.dart';
-class BannersView extends StatefulWidget {
-  final List<BannerModel> banners;
+import 'package:url_launcher/url_launcher.dart';
+import 'package:sip_app/constants/colors.dart';
 
-  BannersView({required this.banners});
+class BannerViewButton extends StatelessWidget {
+  final BannerModel banner;
+  final int index;
+  final int bannersLength;
 
-  @override
-  BannersViewState createState() => BannersViewState();
-}
+  const BannerViewButton({
+    required this.banner,
+    required this.index,
+    required this.bannersLength,
+    Key? key,
+  }) : super(key: key);
 
-class BannersViewState extends State<BannersView> {
+  void _launchURL() async {
+    if (await canLaunch(banner.link)) {
+      await launch(banner.link);
+    } else {
+      throw 'Could not launch ${banner.link}';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      CarouselSlider(
-          options: CarouselOptions(
-            initialPage: 0,
-            aspectRatio: 16 / 6,
-            viewportFraction: 1,
-            enableInfiniteScroll: false,
-            // enlargeCenterPage: true,
-            // enlargeFactor: 0.2,
-          ),
-          items: List.generate(
-              widget.banners.length,
-              (i) => BannerViewButton(
-                  banner: widget.banners[i],
-                  index: i + 1,
-                  bannersLength: widget.banners.length))),
-    ]);
+    return GestureDetector(
+      onTap: _launchURL, // 탭 시 _launchURL 함수 호출
+      child: BannerItem(
+        banner: banner,
+        index: index,
+        bannersLength: bannersLength,
+      ),
+    );
   }
 }
 
@@ -41,12 +42,12 @@ class BannerItem extends StatelessWidget {
   final int index;
   final int bannersLength;
 
-  const BannerItem(
-      {required this.banner,
-      required this.index,
-      required this.bannersLength,
-      Key? key})
-      : super(key: key);
+  const BannerItem({
+    required this.banner,
+    required this.index,
+    required this.bannersLength,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

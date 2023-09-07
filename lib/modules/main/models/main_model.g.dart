@@ -18,10 +18,10 @@ MainModel _$MainModelFromJson(Map<String, dynamic> json) => MainModel(
           .toList(),
       markets: (json['markets'] as List<dynamic>)
           .map((e) => MarketModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      communities: (json['communities'] as List<dynamic>)
-          .map((e) => CommunityModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+          .toList()
+      // communities: (json['communities'] as List<dynamic>)
+      //     .map((e) => CommunityModel.fromJson(e as Map<String, dynamic>))
+      //     .toList(),
     );
 
 Map<String, dynamic> _$MainModelToJson(MainModel instance) => <String, dynamic>{
@@ -29,5 +29,5 @@ Map<String, dynamic> _$MainModelToJson(MainModel instance) => <String, dynamic>{
       'mainCategories': instance.mainCategories,
       'powerExperts': instance.powerExperts,
       'markets': instance.markets,
-      'communities': instance.communities,
+   //   'communities': instance.communities,
     };

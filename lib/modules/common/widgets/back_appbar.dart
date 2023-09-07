@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sip_app/constants/colors.dart';
 
-class BackAppBar extends StatelessWidget with PreferredSizeWidget {
+class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Widget? actionWidget;
 

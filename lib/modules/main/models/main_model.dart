@@ -13,14 +13,13 @@ class MainModel {
   final List<MainCategoryModel> mainCategories;
   final List<ExpertModel> powerExperts;
   final List<MarketModel> markets;
-  final List<CommunityModel> communities;
+
 
   MainModel(
       {required this.banners,
       required this.mainCategories,
       required this.powerExperts,
-      required this.markets,
-      required this.communities});
+      required this.markets});
 
   factory MainModel.fromJson(Map<String, dynamic> json) =>
       _$MainModelFromJson(json);

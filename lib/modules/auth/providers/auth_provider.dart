@@ -31,8 +31,8 @@ class AuthStateNotifier extends StateNotifier<AuthModel> {
 
   // 스플레쉬 화면에서 토큰이 있는지 검증
   // 토큰이 있으면 토큰 재발급 api 호출
-  // 에러나면 로그인 안된유저로 처리
-  // 성공하면 로그인상태 유지
+  /// 에러나면 로그인 안된 유저로 처리
+  /// 성공하면 로그인상태 유지
   Future<void> checkTokenSplash(BuildContext context) async {
     print('checkTokenSplash');
     try {

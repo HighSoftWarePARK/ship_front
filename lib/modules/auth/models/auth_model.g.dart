@@ -19,13 +19,13 @@ Map<String, dynamic> _$AuthModelToJson(AuthModel instance) => <String, dynamic>{
       'role': _$JsonConverterToJson<String, UserRole>(
           instance.role, const UserRoleConverter().toJson),
     };
-
+///이 메서드는 JSON 데이터를 Json 형식의 값으로 역직렬화하는 역할
 Value? _$JsonConverterFromJson<Json, Value>(
   Object? json,
   Value? Function(Json json) fromJson,
 ) =>
     json == null ? null : fromJson(json as Json);
-
+/// 이 메서드는 Json 형식의 값을 JSON 데이터로 직렬화하는 역할
 Json? _$JsonConverterToJson<Json, Value>(
   Value? value,
   Json? Function(Value value) toJson,
