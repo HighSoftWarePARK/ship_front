@@ -25,7 +25,7 @@ final checkLoggedInProvider = StateProvider<bool>((ref) {
   return accessToken != null;
 });
 /// signinProvider는 Riverpod 패키지의 StateNotifierProvider를 사용하여 상태를 관리하는 provider
-final signinProvider = StateNotifierProvider.autoDispose<SigninStateNotifier, ServerStatusBase>((ref) {
+final signinAppleProvider = StateNotifierProvider.autoDispose<SigninStateNotifier, ServerStatusBase>((ref) {
   final Dio dio = ref.watch(dioProvider);
   final AuthRepository repository = AuthRepository(dio, baseUrl: SERVER_BASE_URL);
   final notifier = SigninStateNotifier(repository: repository, ref: ref);
@@ -77,13 +77,26 @@ class SigninStateNotifier extends StateNotifier<ServerStatusBase>{
       //사용자의 로그인 상태를 관리하는 데 사용
       ref.read(authProvider.notifier).setAuthModel(accessToken: res.response.accessToken);
 
+      if (Theme.of(context).platform == TargetPlatform.iOS) {
+        final appleCredential = await SignInWithApple.getAppleIDCredential(
+          scopes: [
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+          webAuthenticationOptions: WebAuthenticationOptions(
+            clientId: 'ioss.test.fluttersimple',
+            redirectUri: Uri.parse(
+                'https://wealthy-sedate-furniture.glitch.me/callbacks/sign_in_with_apple'),
+          ),
+        );
+        final identityToken = appleCredential.identityToken;
 
+        // authProvider를 사용하여 사용자 인증 모델을 업데이트
+        ref.read(authProvider.notifier).setAuthModel(
+          appleIdentityToken: identityToken,
+        );
+      }
 
-
-      // authProvider를 사용하여 사용자 인증 모델을 업데이트
-      ref.read(authProvider.notifier).setAuthModel(
-        accessToken: res.response.accessToken
-      );
 
 
       ///로그인 성공

@@ -345,39 +345,41 @@ class SigninForm extends ConsumerWidget {
                 onPressed: () async {
                   if (_formKey.currentState != null) {
                     // TODO: 애플 로그인 버튼 클릭 시 동작 구현
-                    final credential =
-                    await SignInWithApple.getAppleIDCredential(
-                      scopes: [
-                        AppleIDAuthorizationScopes.email,
-                        AppleIDAuthorizationScopes.fullName,
-                      ],
-                      webAuthenticationOptions: WebAuthenticationOptions(
-                        clientId: 'ioss.test.fluttersimple',
-                        redirectUri: Uri.parse(
-                            'https://wealthy-sedate-furniture.glitch.me/callbacks/sign_in_with_apple'),
-                      ),
-                    );
 
-                    print(credential);
+                    // 클릭 시 애플 로그인 프로바이더의 상태 업데이트
+                    final result =
+                        await SignInWithApple.getAppleIDCredential(
+                          scopes: [
+                            AppleIDAuthorizationScopes.email,
+                            AppleIDAuthorizationScopes.fullName,
+                          ],
+                          webAuthenticationOptions: WebAuthenticationOptions(
+                            clientId: 'ioss.test.fluttersimple',
+                            redirectUri: Uri.parse(
+                                'https://wealthy-sedate-furniture.glitch.me/callbacks/sign_in_with_apple'),
+                          ),
+                        );
+
+                        print(result);
 
                     final signInWithAppleEndpoint = Uri(
                       scheme: 'https',
                       host: 'wealthy-sedate-furniture.glitch.me',
                       path: '/callbacks/sign_in_with_apple',
                       queryParameters: <String, String>{
-                        'code': credential.authorizationCode,
-                        if (credential.givenName != null)
-                          'firstName': credential.givenName!,
-                        if (credential.familyName != null)
-                          'lastName': credential.familyName!,
-                        if (credential.state != null)
-                          'state': credential.state!,
+                        'code': result.authorizationCode,
+                        if (result.givenName != null)
+                          'firstName': result.givenName!,
+                        if (result.familyName != null)
+                          'lastName': result.familyName!,
+                        if (result.state != null)
+                          'state': result.state!,
                       },
                     );
-
                     final session = await http.Client().post(
                       signInWithAppleEndpoint,
                     );
+
                     context.go(PATH_HOME);
                     print(session);
                   }
@@ -397,10 +399,10 @@ class SigninForm extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(
-                      Icons.login,
-                      size: 20,
-                      color: Colors.white,
+                    SvgPicture.asset(
+                      'assets/icons/icon_apple_login.svg',
+                      width: 19,
+                      height: 19,
                     ),
                     Container(
                       margin: const EdgeInsets.only(left: 4),
