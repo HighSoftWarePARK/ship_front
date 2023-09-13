@@ -3,9 +3,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:sip_app/constants/app_constants.dart';
 import 'package:sip_app/constants/path.dart';
 import 'package:sip_app/modules/auth/models/signin_model.dart';
+import 'package:sip_app/modules/auth/models/auth_model.dart';
+import 'package:sip_app/modules/auth/models/auth_token_model.dart';
 import 'package:sip_app/modules/auth/providers/auth_provider.dart';
 import 'package:sip_app/modules/auth/providers/signin_email_provider.dart';
 import 'package:sip_app/modules/auth/providers/signin_password_provider.dart';
@@ -14,6 +17,13 @@ import 'package:sip_app/modules/common/models/server_status_model.dart';
 import 'package:sip_app/modules/common/providers/dio_provider.dart';
 import 'package:sip_app/modules/common/providers/secure_provider.dart';
 
+final checkLoggedInProvider = StateProvider<bool>((ref) {
+  final storage = ref.watch(secureStorageProvider);
+  final accessToken = storage.read(key: ACCESS_TOKEN_KEY);
+
+  // 액세스 토큰이 있는 경우, 사용자가 로그인되어 있는 것으로 간주
+  return accessToken != null;
+});
 /// signinProvider는 Riverpod 패키지의 StateNotifierProvider를 사용하여 상태를 관리하는 provider
 final signinProvider = StateNotifierProvider.autoDispose<SigninStateNotifier, ServerStatusBase>((ref) {
   final Dio dio = ref.watch(dioProvider);
@@ -66,6 +76,29 @@ class SigninStateNotifier extends StateNotifier<ServerStatusBase>{
       /// authProvider를 사용하여 사용자 인증 모델을 업데이트
       //사용자의 로그인 상태를 관리하는 데 사용
       ref.read(authProvider.notifier).setAuthModel(accessToken: res.response.accessToken);
+
+      // Apple 인증 자격 증명에서 identityToken을 추출하여 저장
+      final appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        webAuthenticationOptions: WebAuthenticationOptions(
+          clientId: 'ioss.test.fluttersimple',
+          redirectUri: Uri.parse(
+              'https://wealthy-sedate-furniture.glitch.me/callbacks/sign_in_with_apple'),
+        ),
+      );
+
+      final identityToken = appleCredential.identityToken;
+      // identityToken을 서버로 전송하거나 필요한 곳에 사용
+
+      // authProvider를 사용하여 사용자 인증 모델을 업데이트
+      ref.read(authProvider.notifier).setAuthModel(
+        accessToken: res.response.accessToken,
+        appleIdentityToken: identityToken,
+      );
+
 
       ///로그인 성공
       state = ServerStatusSuccess();

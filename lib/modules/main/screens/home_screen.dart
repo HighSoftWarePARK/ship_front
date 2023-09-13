@@ -12,6 +12,7 @@ import 'package:sip_app/modules/main/widgets/communities_view.dart';
 import 'package:sip_app/modules/main/widgets/market_intro_view.dart';
 import 'package:sip_app/modules/main/widgets/power_experts_view.dart';
 import 'package:sip_app/modules/main/widgets/section_view.dart';
+import 'package:sip_app/modules/auth/providers/signin_provider.dart';
 // ConsumerWidget을 확장하여 상태를 소비하고 UI를 빌드하는 역할
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -22,6 +23,8 @@ class HomeScreen extends ConsumerWidget {
   // ref는 Riverpod 상태 및 프로바이더를 사용하기 위한 레퍼런스입니다.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isLoggedIn = ref.watch(checkLoggedInProvider);
+
     // mainFutureProvider 프로바이더의 값을 감시
     // 이 프로바이더를 통해 앱의 메인 데이터를 비동기로 가져옴
     final config = ref.watch(mainFutureProvider);
@@ -47,7 +50,10 @@ class HomeScreen extends ConsumerWidget {
                     child: PowerExpertsView(
                       experts: data.powerExperts,
                     ),
+                    isNeedRoute: true,
+                    routePath: isLoggedIn ? PATH_EXPERTS : PATH_SIGNIN,
                     label: '파워 전문가',
+
                   ),
                   SizedBox(height: 40),
                   SectionView(
@@ -55,7 +61,7 @@ class HomeScreen extends ConsumerWidget {
                       markets: data.markets,
                     ),
                     isNeedRoute: true,
-                    routePath: PATH_MARKETS,
+                    routePath: isLoggedIn ? PATH_MARKETS : PATH_SIGNIN,
                     label: '시장 소개',
                   ),
                   SizedBox(height: 40),

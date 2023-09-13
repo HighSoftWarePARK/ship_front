@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,14 +10,14 @@ import 'package:sip_app/modules/common/providers/dio_provider.dart';
 import 'package:sip_app/modules/common/providers/secure_provider.dart';
 import 'package:sip_app/utils/jwt.dart';
 
-final checkLoggedInProvider = StateProvider<bool>((ref){
+final checkLoggedInProvider = StateProvider<bool>((ref) {
   return false;
 });
 
 final authProvider = StateNotifierProvider<AuthStateNotifier, AuthModel>((ref) {
   final Dio dio = ref.watch(dioProvider);
   final AuthRepository repository = AuthRepository(dio, baseUrl: SERVER_BASE_URL);
-  final notifier = AuthStateNotifier(ref: ref, repository:repository);
+  final notifier = AuthStateNotifier(ref: ref, repository: repository);
 
   return notifier;
 });
@@ -48,7 +47,7 @@ class AuthStateNotifier extends StateNotifier<AuthModel> {
         context.go(PATH_HOME);
         return;
       } else {
-        print('로그인 가능성 잇음');
+        print('로그인 가능성 있음');
         // 로그인 가능성 있음
         // 토큰 재발급
         final res = await repository.refreshToken();
@@ -115,33 +114,5 @@ class AuthStateNotifier extends StateNotifier<AuthModel> {
       print('authmodel:$authModel');
       state = authModel;
     }
-
   }
 }
-
-
-// authModel
-// memberModel
-// storageModel
-//todo
-// auth model이 변경이 되면 listen 하고 있다가 변경이 되는 changeNotifierProvider가 있어야 함.
-// 만약 로그인이 안되어 있는데 유저의 행동을 시도 할 시 로그인 페이지 이동 후 로그인 하고 리다이렉트 시켜준다.
-// 유저 정보를 불러오는 api에서 expert랑 wholesaler 다 받아옴
-// 로그아웃 두가지 방법
-// auth model이 변경이 되면 listen 하고 있다가 변경이 되는 changeNotifierProvider가 있어야 함. 1번째 방법
-// 맴버 provider에서 로그아웃을 하고 authmodel에서 changeNotifierProvider를 통해서 리다이렉트 시켜주는거지. 두번째방법
-//wholesaler, expert 이 두개의 룰이 있잖아.
-// authModel 의 role이 expert이면
-// wholesaler 의 role이 wholesaler
-// 최근 유저의 롤이 뭐였는지 storage에 같이 저장하자.
-// 만약 최근 role 이 expert라면,
-// expert 전용화면에서 api요청해야함
-// expert 정보, 유저 정보가 필요함
-// 그냥 유저 정보 불러오는 api에서 expert 랑 wholesaler 다 달라고 하자.
-// 그러면 member model에서 다 같이 관리할수있어
-// 여기까지 구현해야함. - 서울역 카페
-
-// provider가 너무 흩어져 있다.
-// 이걸 어떻게 관리 할 수 있지않을까?
-// FutureProvider보다는 StateNotifierProvider를 쓰는게 더 낫지 않을까?
-//

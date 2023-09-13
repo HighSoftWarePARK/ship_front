@@ -12,7 +12,7 @@ class SigninPasswordInput extends ConsumerWidget {
       controller:controller,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter some text';
+          return '비밀번호를 적어주세요!';
         }
         return null;
       },

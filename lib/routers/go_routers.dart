@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:sip_app/constants/path.dart';
+import 'package:sip_app/modules/auth/screens/forgot_password1_screen.dart';
 import 'package:sip_app/modules/auth/screens/signin_screen.dart';
 import 'package:sip_app/modules/auth/screens/signup_email_screen.dart';
 import 'package:sip_app/modules/auth/screens/signup_name_screen.dart';
@@ -65,6 +66,9 @@ final GoRouter goRouter = GoRouter(
     GoRoute(
         path: PATH_SIGNIN,
         pageBuilder: (_, state) => NoTransitionPage(child: SigninScreen())),
+    GoRoute(
+        path: PATH_FINDIDPW,
+        pageBuilder: (_, state) => NoTransitionPage(child: ForgotPassword1Screen())),
      // PATH_HOME에 대한 경로 설정
     GoRoute(
       // home 경로에 대한 설정:
@@ -129,6 +133,7 @@ final GoRouter goRouter = GoRouter(
     //     path: PATH_COMMUNITIES,
     //     pageBuilder: (_, state) =>
     //         NoTransitionPage(child: CommunitiesScreen())),
+
     GoRoute(
         path: PATH_MYPAGE,
         pageBuilder: (_, state) => NoTransitionPage(child: MypageScreen()),

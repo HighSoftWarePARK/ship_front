@@ -2,10 +2,12 @@
 
 ///각각의 상수는 해당 경로의 식별자
 ///라우팅 또는 네트워크 요청 등에 사용
-final String SERVER_BASE_URL = 'http://172.30.1.70/api/v1';
+final String SERVER_BASE_URL = 'http://ship-dev.ap-northeast-2.elasticbeanstalk.com/api/v1';
 final String PATH_SPLASH = '/a';
 final String PATH_HOME = '/';
 final String PATH_SIGNIN = '/signin';
+final String PATH_SIGNUP = '/signup';
+final String PATH_FINDIDPW = '/findidpw';
 final String PATH_EXPERTS = '/experts';
 final String PATH_EXPERTS_MATCHINGS = '/experts/matchings';
 final String PATH_WHOLESALES = '/wholesales';

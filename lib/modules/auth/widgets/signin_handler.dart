@@ -15,7 +15,7 @@ class SigninHandler extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref){
     final data = ref.watch(signinProvider);
-    final String errorMessage = '서버 에러';
+    final String errorMessage = '다시 시도 해 주세요!';
 
     final isLoading = data is ServerStatusLoading;
     final isError = data is ServerStatusError;

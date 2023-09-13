@@ -35,7 +35,7 @@ dependencies:
   flutter_svg: ^2.0.5
   get: ^4.6.5
   google_fonts: ^4.0.4
-  kakao_flutter_sdk: ^1.4.2
+  kakao_flutter_sdk: ^1.5.0
   dio: ^5.2.1+1
   json_annotation: ^4.8.0
   package_info: ^2.0.2
@@ -60,7 +60,14 @@ dependencies:
   intl: ^0.18.1
   flutter_localization: ^0.1.13
   fluttertoast: ^8.2.2
-
+  material_design_icons_flutter: 5.0.6996
+  flutter_feather_icons: ^2.0.0+1
+  lucide_icons: ^0.257.0
+  flutter_naver_login: ^1.6.0
+  flutter_kakao_login: ^3.4.0
+  firebase_auth: ^4.9.0
+  sign_in_with_apple: ^5.0.0
+  http: ^0.13.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

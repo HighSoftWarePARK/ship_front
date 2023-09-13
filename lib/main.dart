@@ -4,9 +4,15 @@ import 'package:sip_app/routers/go_routers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
-
+import 'package:flutter_naver_login/flutter_naver_login.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 //앱 실행
-void main() {
+void main() async {
+WidgetsFlutterBinding.ensureInitialized(); // 앱 초기화를 기다리도록 설정
+
+KakaoSdk.init(nativeAppKey: 'c5f620fd6e4288fae50a90fcace53fec');
+
   runApp(ProviderScope(child: MyApp()));
   //runApp이 최초로 불러온 위젯
   //MyApp은 위젯 트리에서 최상단에 위치하는 위젯이며 스크린 레이아웃을 최초로 빌드하는 역할
@@ -61,5 +67,9 @@ class MyApp extends StatelessWidget {
     //           themeMode: ThemeMode.system,
     //           home: RootView());
     //     });
+
+
   }
+
+
 }

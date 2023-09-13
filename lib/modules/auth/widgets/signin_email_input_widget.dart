@@ -13,7 +13,7 @@ class SigninEmailInput extends ConsumerWidget {
       controller: controller,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter some text';
+          return '아이디를 적어주세요';
         }
         return null;
       },

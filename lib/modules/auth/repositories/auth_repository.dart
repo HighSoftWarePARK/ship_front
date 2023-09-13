@@ -13,7 +13,7 @@ part 'auth_repository.g.dart';
 /// RESTful API를 호출하는
 /// AuthRepository 클래스를 정의하는 코드
 @RestApi()
-// AuthRepository 추상 클래스를 정의
+
 // 이 클래스는 Retrofit을 통해 생성될 실제 클래스의 원형
 abstract class AuthRepository {
   //AuthRepository의 팩토리 생성자
