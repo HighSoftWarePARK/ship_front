@@ -1,10 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:go_router/go_router.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:sip_app/constants/app_constants.dart';
 import 'package:sip_app/constants/path.dart';
 import 'package:sip_app/modules/auth/models/auth_model.dart';
+import 'package:sip_app/modules/auth/screens/onboarding_screen.dart';
 import 'package:sip_app/modules/auth/repositories/auth_repository.dart';
 import 'package:sip_app/modules/common/providers/dio_provider.dart';
 import 'package:sip_app/modules/common/providers/secure_provider.dart';
@@ -34,6 +39,7 @@ class AuthStateNotifier extends StateNotifier<AuthModel> {
   /// 성공하면 로그인상태 유지
   Future<void> checkTokenSplash(BuildContext context) async {
     print('checkTokenSplash');
+    bool _shouldNavigateToOnBoarding;
     try {
       print('accessToken1');
       final storage = ref.read(secureStorageProvider);
@@ -43,7 +49,7 @@ class AuthStateNotifier extends StateNotifier<AuthModel> {
 
       if (accessToken == null || xerk == null) {
         print('로그인 안된 유저');
-        //로그인 안된 유저
+
         context.go(PATH_HOME);
         return;
       } else {
@@ -72,12 +78,15 @@ class AuthStateNotifier extends StateNotifier<AuthModel> {
           await storage.delete(key: XERK_TOKEN_KEY);
         }
       }
-      context.go(PATH_HOME);
+
+     context.go(PATH_HOME);
     } catch(error) {
       print('에러입니다');
       print(error);
       ref.read(checkLoggedInProvider.notifier).state = false;
+    //TODO: 에러 페이지 만들기
       context.go(PATH_HOME);
+
     }
   }
 

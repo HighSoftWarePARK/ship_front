@@ -7,7 +7,7 @@ import 'package:sip_app/constants/path.dart';
 List<String> pages = [
   PATH_HOME,
   PATH_EXPERTS,
-  PATH_WHOLESALES,
+  PATH_WHOLESALER,
  // PATH_COMMUNITIES,
   PATH_MYPAGE,
   // PATH_SIGNIN

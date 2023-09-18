@@ -6,6 +6,8 @@ import 'package:sip_app/modules/auth/screens/signup_email_screen.dart';
 import 'package:sip_app/modules/auth/screens/signup_name_screen.dart';
 import 'package:sip_app/modules/auth/screens/signup_password_screen.dart';
 import 'package:sip_app/modules/auth/screens/signup_phone_screen.dart';
+import 'package:sip_app/modules/auth/screens/onboarding_screen.dart';
+import 'package:sip_app/modules/auth/screens/splash_screen.dart';
 import 'package:sip_app/modules/community/screens/communities_screen.dart';
 import 'package:sip_app/modules/expert/screens/expert_detail_screen.dart';
 import 'package:sip_app/modules/expert/screens/experts_screen.dart';
@@ -29,8 +31,10 @@ import 'package:sip_app/modules/qna/screens/qna_screen.dart';
 import 'package:sip_app/modules/review/screens/mypage_reviews_screen.dart';
 import 'package:sip_app/modules/service_center/screens/service_center_screen.dart';
 import 'package:sip_app/modules/wishlist/screens/mypage_wishlist_screen.dart';
-import 'package:sip_app/modules/auth/screens/splash_screen.dart';
+
 import 'package:sip_app/modules/wholesaler/screens/wholesales_screen.dart';
+
+import '../modules/wholesaler/screens/wholesales_detail_screen.dart';
 //Flutter 애플리케이션 내에서 화면 전환 및 라우팅을 관리하기 위한 라우팅 설정
 final GoRouter goRouter = GoRouter(
   initialLocation: PATH_SPLASH,// 앱 시작 시 초기 경로
@@ -62,6 +66,7 @@ final GoRouter goRouter = GoRouter(
     GoRoute(
         path: PATH_SPLASH,
         pageBuilder: (_, state) => NoTransitionPage(child: SplashScreen())),
+    // PATH_SIGNIN에 대한 경로 설정
     // PATH_SIGNIN에 대한 경로 설정
     GoRoute(
         path: PATH_SIGNIN,
@@ -127,13 +132,18 @@ final GoRouter goRouter = GoRouter(
           );
         }),
     GoRoute(
-        path: PATH_WHOLESALES,
-        pageBuilder: (_, state) => NoTransitionPage(child: WholesalesScreen())),
-    // GoRoute(
-    //     path: PATH_COMMUNITIES,
-    //     pageBuilder: (_, state) =>
-    //         NoTransitionPage(child: CommunitiesScreen())),
+        path: PATH_WHOLESALER,
+        pageBuilder: (_, state) => NoTransitionPage(child: wholesalesScreen())),
 
+    GoRoute(
+        path: '/wholesaler/detail/:id',
+        name: 'wholesalesDetail',
+        builder: (context, state) {
+          return wholesalesDetailScreen(
+            wholesalerId: state.pathParameters['id'] ?? '0',
+            wholesalerName: state.queryParameters['name'] ?? '',
+          );
+        }),
     GoRoute(
         path: PATH_MYPAGE,
         pageBuilder: (_, state) => NoTransitionPage(child: MypageScreen()),

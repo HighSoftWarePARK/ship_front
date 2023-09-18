@@ -5,12 +5,14 @@
 final String SERVER_BASE_URL = 'http://ship-dev.ap-northeast-2.elasticbeanstalk.com/api/v1';
 final String PATH_SPLASH = '/a';
 final String PATH_HOME = '/';
+final String PATH_ONBOARDING = '/onboarding';
 final String PATH_SIGNIN = '/signin';
 final String PATH_SIGNUP = '/signup';
 final String PATH_FINDIDPW = '/findidpw';
 final String PATH_EXPERTS = '/experts';
 final String PATH_EXPERTS_MATCHINGS = '/experts/matchings';
-final String PATH_WHOLESALES = '/wholesales';
+final String PATH_WHOLESALER = '/wholesaler';
+final String PATH_WHOLESALER_MATCHINGS = '/wholesaler/matchings';
 final String PATH_COMMUNITIES = '/communities';
 final String PATH_MYPAGE = '/users';
 final String PATH_USER_MATCHINGS = '/users/matchings';

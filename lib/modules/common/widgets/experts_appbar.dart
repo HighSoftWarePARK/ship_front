@@ -56,7 +56,7 @@ class ExpertsAppBar extends StatelessWidget implements PreferredSizeWidget {
                                 margin: EdgeInsets.only(bottom: 4),
                                 alignment: Alignment.centerLeft,
                                 child: const Text(
-                                  '검색어를 입력해주세요',
+                                  '찾고자 하는 전문가를 입력해주세요.',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: GRAY_COLOR_FONT,
