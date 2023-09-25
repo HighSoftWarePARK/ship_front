@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
         debugPrint("*language to fallback ${supportedLocales.first}");
         return supportedLocales.first;
       },
-  //   home: SplashScreen(), // SplashScreen을 앱의 초기 화면으로 설정합니다.
+// home: SplashScreen(), // SplashScreen을 앱의 초기 화면으로 설정합니다.
     );
 
 

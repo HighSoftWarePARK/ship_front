@@ -1,7 +1,13 @@
 
-import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
-class OnBoardingController extends GetxController{
+class OnBoardingController extends ChangeNotifier {
+  int _pageViewIndex = 0;
 
-  RxInt pageViewIndex = 0.obs;
+  int get pageViewIndex => _pageViewIndex;
+
+  set pageViewIndex(int index) {
+    _pageViewIndex = index;
+    notifyListeners(); // 상태 변경을 알립니다.
+  }
 }

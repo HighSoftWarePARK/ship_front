@@ -8,6 +8,7 @@ import 'package:sip_app/modules/common/screens/default_layout.dart';
 import 'package:sip_app/modules/common/widgets/main_bottom_navigationbar.dart';
 import 'package:sip_app/modules/my_page/widgets/mypage_view.dart';
 
+import '../../../constants/colors.dart';
 import '../../common/widgets/main_appbar.dart';
 
 class MypageScreen extends ConsumerWidget {
@@ -18,10 +19,12 @@ class MypageScreen extends ConsumerWidget {
     final bool isLoggedIn = ref.watch(checkLoggedInProvider);
 
     return DefaultLayout(
+
       appBar: MainAppBar(), // MainAppBar 추가
       child: isLoggedIn ? MyPageView() : Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+
           children: [
             Container(
               width: 100, // 로고 이미지의 가로 크기
@@ -61,7 +64,7 @@ class MypageScreen extends ConsumerWidget {
           ],
         ),
       ),
-      backgroundColor: Colors.white,
+        backgroundColor: PRIMARY_BACKGROUND_COLOR,
       bottomNavigationBar: MainBottomNavigationBar(bottomTabIndex: 3),
     );
   }

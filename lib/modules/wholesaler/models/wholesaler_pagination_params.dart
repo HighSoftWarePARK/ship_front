@@ -30,7 +30,7 @@ class wholesalerPaginationParams {
   }
 
 factory wholesalerPaginationParams.fromJson(Map<String, dynamic> json) =>
-    _$ExpertsPaginationParamsFromJson(json);
+    _$wholesalerPaginationParamsFromJson(json);
 
-Map<String, dynamic> toJson() => _$ExpertsPaginationParamsToJson(this);
+Map<String, dynamic> toJson() => _$wholesalerPaginationParamsToJson(this);
 }

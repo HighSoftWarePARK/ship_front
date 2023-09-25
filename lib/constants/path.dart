@@ -12,6 +12,7 @@ final String PATH_FINDIDPW = '/findidpw';
 final String PATH_EXPERTS = '/experts';
 final String PATH_EXPERTS_MATCHINGS = '/experts/matchings';
 final String PATH_WHOLESALER = '/wholesaler';
+final String PATH_WHOLESALE = '/users/wholesaler';
 final String PATH_WHOLESALER_MATCHINGS = '/wholesaler/matchings';
 final String PATH_COMMUNITIES = '/communities';
 final String PATH_MYPAGE = '/users';

@@ -16,19 +16,19 @@ part 'wholesaler_repository.g.dart';
 abstract class wholesalerRepository {
   factory wholesalerRepository(Dio dio, {String baseUrl}) = _wholesalerRepository;
 
-  @GET('/')
+  @GET('/users/wholesaler')
   Future<ResponseModel<Pagination<wholesalerModel>>> paginate(
       {
         @Queries() wholesalerPaginationParams? paginationParams =
         const wholesalerPaginationParams()
       });
 
-  @GET('/{id}')
+  @GET('/users/wholesale/{wholesaleId}')
   Future<ResponseModel<wholesalerModel>> getDetail({
     @Path() required int id,
   });
 
-  @GET('/{id}/reviews')
+  @GET(' /users/wholesale/{wholesaleId}/reviews')
   Future<ResponseModel<Pagination<ReviewModel>>> reviewPaginate({
     @Queries()
     BasicPaginationParams? paginationParams = const BasicPaginationParams(),
@@ -36,7 +36,7 @@ abstract class wholesalerRepository {
   });
 
   // 전문가 찜하기
-  @POST('/wholesaler/{wholesalerId}/wishlists')
+  @POST(' /users/wholesale/{wholesaleId}/wishlists')
   Future<ResponseModel<WishlistModel>> createWishlist({
     @Path('wholesalerId') required int wholesalerId,
     @Body() required CreateWishlistModel data,

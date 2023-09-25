@@ -6,7 +6,7 @@ part of 'wholesaler_pagination_params.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-wholesalerPaginationParams _$ExpertsPaginationParamsFromJson(
+wholesalerPaginationParams _$wholesalerPaginationParamsFromJson(
         Map<String, dynamic> json) =>
     wholesalerPaginationParams(
       page: json['page'] as int?,
@@ -15,7 +15,7 @@ wholesalerPaginationParams _$ExpertsPaginationParamsFromJson(
       limit: json['limit'] as int?,
     );
 
-Map<String, dynamic> _$ExpertsPaginationParamsToJson(
+Map<String, dynamic> _$wholesalerPaginationParamsToJson(
     wholesalerPaginationParams instance) =>
     <String, dynamic>{
       'page': instance.page,

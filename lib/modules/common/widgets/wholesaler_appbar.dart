@@ -56,7 +56,7 @@ class wholesalerAppBar extends StatelessWidget implements PreferredSizeWidget {
                                 margin: EdgeInsets.only(bottom: 4),
                                 alignment: Alignment.centerLeft,
                                 child: const Text(
-                                  '찾고자 하는 도/소매 물품을 입력해주세요.',
+                                  '도/소매 물품을 입력해주세요.',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: GRAY_COLOR_FONT,

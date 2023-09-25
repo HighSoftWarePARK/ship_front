@@ -8,7 +8,7 @@ List<String> pages = [
   PATH_HOME,
   PATH_EXPERTS,
   PATH_WHOLESALER,
- // PATH_COMMUNITIES,
+  PATH_MARKETS,
   PATH_MYPAGE,
   // PATH_SIGNIN
 ];
@@ -91,22 +91,22 @@ class MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
               )),
           label: '도소매 보기',
         ),
-        // BottomNavigationBarItem(
-        //   activeIcon: SizedBox(
-        //     width: 24,
-        //     height: 24,
-        //     child: SvgPicture.asset(
-        //       'assets/icons/icon_community_selected.svg',
-        //     ),
-        //   ),
-        //   icon: SizedBox(
-        //       width: 24,
-        //       height: 24,
-        //       child: SvgPicture.asset(
-        //         'assets/icons/icon_community.svg',
-        //       )),
-        //   label: '커뮤니티',
-        // ),
+        BottomNavigationBarItem(
+          activeIcon: SizedBox(
+            width: 24,
+            height: 24,
+            child: SvgPicture.asset(
+              'assets/icons/icon_community_selected.svg',
+            ),
+          ),
+          icon: SizedBox(
+              width: 24,
+              height: 24,
+              child: SvgPicture.asset(
+                'assets/icons/icon_community.svg',
+              )),
+          label: '시장 보기',
+        ),
         BottomNavigationBarItem(
           activeIcon: SizedBox(
             width: 24,

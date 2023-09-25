@@ -16,6 +16,7 @@ import 'package:sip_app/modules/auth/repositories/auth_repository.dart';
 import 'package:sip_app/modules/common/models/server_status_model.dart';
 import 'package:sip_app/modules/common/providers/dio_provider.dart';
 import 'package:sip_app/modules/common/providers/secure_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final checkLoggedInProvider = StateProvider<bool>((ref) {
   final storage = ref.watch(secureStorageProvider);
@@ -40,7 +41,8 @@ class SigninStateNotifier extends StateNotifier<ServerStatusBase>{
   // repository는 API 호출을 관리하는 AuthRepository 클래스의 인스턴스
   final ref;
   final AuthRepository repository;
-
+  static const String keyEmail = 'email';
+  static const String keyPassword = 'password';
   SigninStateNotifier({required this.ref, required this.repository})
       : super(ServerStatusInitial());
 
@@ -54,7 +56,22 @@ class SigninStateNotifier extends StateNotifier<ServerStatusBase>{
       final data = SigninModel(
         identyKey: ref.read(signinEmailProvider).email,
         password: ref.read(signinPasswordProvider).password,
+
       );
+      print('로그인 성공 데이터: ${data.toString()}'); // data를 로그로 출력
+      // ID 값을 저장하는 함수
+      Future<void> saveUserEmail(String email) async {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString(keyEmail, ref.read(signinEmailProvider).email);
+      }
+      Future<void> saveUserPassword(String password) async {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString(keyPassword, ref.read(signinPasswordProvider).password);
+      }
+      print('유저 아이디: ${saveUserEmail.toString()}'); // data를 로그로 출력
+      print('유저 비밀번호: ${saveUserPassword.toString()}'); // data를 로그로 출력
+
+
       /// 로그인 호출
       // repository.signin(data: data)를 호출하여 서버에 로그인 요청 보내기
       final res = await repository.signin(data: data);

@@ -6,11 +6,11 @@ import 'package:sip_app/constants/colors.dart';
 import '../../../constants/path.dart';
 import '../../auth/widgets/signin_view.dart';
 
-class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
+class BackLoginAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Widget? actionWidget;
 
-  const BackAppBar({required this.title, this.actionWidget, Key? key})
+  const BackLoginAppBar({required this.title, this.actionWidget, Key? key})
       : super(key: key);
 
   @override
@@ -30,8 +30,8 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: SvgPicture.asset('assets/icons/icon_back.svg'),
         onPressed: () {
-         Navigator.of(context).pop();
-         // _showDialog(context);
+          //  Navigator.of(context).pop();
+          _showDialog(context);
         },
       ),
       actions: [
@@ -67,7 +67,7 @@ void _showDialog(BuildContext context) {
               //   MaterialPageRoute(
               //     builder: (context) => SigninView(), // 로그인 화면으로 이동
               //   ),
-           //   );
+              //   );
             },
           ),
         ],

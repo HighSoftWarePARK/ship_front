@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sip_app/constants/colors.dart';
+import 'package:sip_app/main.dart';
+import 'package:sip_app/modules/main/screens/home_screen.dart';
 
 import '../../../constants/path.dart';
 import '../../auth/widgets/signin_view.dart';
 
-class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
+class BackHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Widget? actionWidget;
 
-  const BackAppBar({required this.title, this.actionWidget, Key? key})
+  const BackHomeAppBar({required this.title, this.actionWidget, Key? key})
       : super(key: key);
 
   @override
@@ -30,8 +32,10 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: SvgPicture.asset('assets/icons/icon_back.svg'),
         onPressed: () {
-         Navigator.of(context).pop();
-         // _showDialog(context);
+          //Navigator.of(context).pop();
+          Navigator.pop(context); // 현재 화면 닫기
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => MyApp())); // main.dart 다시 호출
+          //_showDialog(context);
         },
       ),
       actions: [
@@ -62,12 +66,12 @@ void _showDialog(BuildContext context) {
               // 여기에서 실제 초기화 요청을 보내거나 작업을 수행할 수 있습니다.
               // 작업이 완료되면 알림 창을 닫아야 합니다.
               Navigator.of(context).pop(); // 다이얼로그 닫기
-              context.go(PATH_SIGNIN);
+              context.go(PATH_HOME);
               // Navigator.of(context).pushReplacement(
               //   MaterialPageRoute(
               //     builder: (context) => SigninView(), // 로그인 화면으로 이동
               //   ),
-           //   );
+              //   );
             },
           ),
         ],
