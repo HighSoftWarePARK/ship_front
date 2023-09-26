@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sip_app/constants/colors.dart';
 import 'package:sip_app/modules/category/models/main_category_model.dart';
 
@@ -43,6 +44,12 @@ class CategoryItem extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(10)),
           color: Colors.white,
         ),
+        child: GestureDetector(
+          onTap: () {
+            // Container를 탭했을 때 화면 이동
+            final int id = category.id;
+            context.push('/experts?mainCategoryId=$id');
+        },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -81,6 +88,6 @@ class CategoryItem extends StatelessWidget {
                   color: SECTION_FONT_COLOR),
             )
           ],
-        ));
+        )));
   }
 }

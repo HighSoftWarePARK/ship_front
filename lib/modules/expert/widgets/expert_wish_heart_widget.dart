@@ -9,7 +9,7 @@ import 'package:sip_app/modules/wishlist/models/response_check_wish_model.dart';
 class ExpertWishHeart extends ConsumerWidget {
   final int expertId;
 
-  ExpertWishHeart({required this.expertId});
+   ExpertWishHeart({required this.expertId});
 
   Widget build(BuildContext context, WidgetRef ref) {
     final checkedData = ref.watch(expertCheckWishProvider(expertId));

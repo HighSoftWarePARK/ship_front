@@ -15,16 +15,19 @@ import 'package:sip_app/modules/category/widgets/sub_categories_view.dart';
 
 class ExpertsScreen extends ConsumerStatefulWidget {
   final ExpertsPaginationParams param = ExpertsPaginationParams();
+  final String mainCategoryId;
 
-  ExpertsScreen({super.key});
+  ExpertsScreen({required this.mainCategoryId, super.key});
 
   @override
-  ExpertsScreenState createState() => ExpertsScreenState();
+  ExpertsScreenState createState() => ExpertsScreenState(mainCategoryId);
 }
 
 class ExpertsScreenState extends ConsumerState<ExpertsScreen> {
   int page = 1;
   final ScrollController _scrollController = ScrollController();
+  final String mainCategoryId;
+  ExpertsScreenState(this.mainCategoryId);
 
   @override
   void initState() {
@@ -37,7 +40,11 @@ class ExpertsScreenState extends ConsumerState<ExpertsScreen> {
     if (_scrollController.offset >
         _scrollController.position.maxScrollExtent - 100) {
       final selectCategoryPair = ref.read(selectCategoryPairProvider(CATEGORY_PAIR_EXPERT_TYPE));
-      final selectMainCategoryId = selectCategoryPair.mainCategoryId ?? 0;
+      int selectMainCategoryId = selectCategoryPair.mainCategoryId ?? 0;
+      if(mainCategoryId.isNotEmpty){
+        selectMainCategoryId = int.parse(mainCategoryId);
+      }
+
       final selectMiddleCategoryId = selectMainCategoryId > 0
           ? selectCategoryPair.middleCategoryIds[selectMainCategoryId]
           : 0;
@@ -57,10 +64,15 @@ class ExpertsScreenState extends ConsumerState<ExpertsScreen> {
   @override
   Widget build(BuildContext context) {
     final selectCategoryPair = ref.watch(selectCategoryPairProvider(CATEGORY_PAIR_EXPERT_TYPE));
-    final selectMainCategoryId = selectCategoryPair.mainCategoryId ?? 0;
+    int selectMainCategoryId = selectCategoryPair.mainCategoryId ?? 0;
+    if(mainCategoryId.isNotEmpty){
+      selectMainCategoryId = int.parse(mainCategoryId);
+    }
+
     final selectMiddleCategoryId = selectMainCategoryId > 0
         ? selectCategoryPair.middleCategoryIds[selectMainCategoryId]
         : 0;
+
     final categoryPair = CategoryPair(
         mainCategoryId: selectCategoryPair.mainCategoryId,
         middleCategoryId:

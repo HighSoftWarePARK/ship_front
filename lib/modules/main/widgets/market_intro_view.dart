@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sip_app/constants/colors.dart';
 import 'package:sip_app/modules/market/models/market_model.dart';
 
@@ -39,6 +40,13 @@ class MarketItem extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10)),
               image: DecorationImage(image: imageProvider, fit: BoxFit.cover)),
+          child: GestureDetector(
+          onTap: () {
+            // Container를 탭했을 때 화면 이동
+            final int id = market.id;
+            print("marketId:"+id.toString());
+            context.push('/markets/$id');
+          },
           child: Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
@@ -49,7 +57,8 @@ class MarketItem extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                         letterSpacing: -1))),
-          )),
+          )))
+      ,
       placeholder: (context, url) => Container(
           width: MediaQuery.of(context).size.width - 40,
           height: (MediaQuery.of(context).size.width - 40) * (7 / 16),
