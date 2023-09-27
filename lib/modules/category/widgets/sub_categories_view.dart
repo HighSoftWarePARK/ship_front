@@ -7,13 +7,16 @@ import 'package:sip_app/modules/category/providers/select_category_view_provider
 
 class SubCategoriesView extends ConsumerWidget {
   final String type;
+  final int mainCategoryId;
 
-  SubCategoriesView({required this.type});
+  SubCategoriesView({required this.type, required this.mainCategoryId });
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectCategoryPair = ref.watch(selectCategoryPairProvider(type));
-    final selectedCategoryId = selectCategoryPair.mainCategoryId;
+    final selectedCategoryId = this.mainCategoryId;
+    print("selectedCategoryId-main:"+selectedCategoryId.toString());
     final middleCategoryIds = selectCategoryPair.middleCategoryIds;
     final selectedMiddleCategoryId = middleCategoryIds[selectedCategoryId];
     final middleCategoriesData =
@@ -39,7 +42,6 @@ class SubCategoriesView extends ConsumerWidget {
       return Text('djqtasd');
     }
 
-    print('selectedMiddleCategoryId, $selectedMiddleCategoryId');
     return Container(
         color: Colors.white,
         padding: EdgeInsets.fromLTRB(20, 10, 20, 10),

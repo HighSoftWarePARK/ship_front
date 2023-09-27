@@ -100,6 +100,7 @@ class MainCategoryStateNotifier
 final selectCategoryPairProvider =
     StateNotifierProvider.family<SelectedCategoryPairNotifier, SelectCategoryPair, String>(
         (ref, type) {
+
   final notifier = SelectedCategoryPairNotifier();
 
   return notifier;

@@ -50,7 +50,8 @@ class ExpertsScreenState extends ConsumerState<ExpertsScreen> {
           : 0;
 
       final categoryPair = CategoryPair(
-          mainCategoryId: selectCategoryPair.mainCategoryId,
+         // mainCategoryId: selectCategoryPair.mainCategoryId,
+          mainCategoryId: selectMainCategoryId,
           middleCategoryId:
           selectMiddleCategoryId != null ? selectMiddleCategoryId : 0);
 
@@ -74,7 +75,7 @@ class ExpertsScreenState extends ConsumerState<ExpertsScreen> {
         : 0;
 
     final categoryPair = CategoryPair(
-        mainCategoryId: selectCategoryPair.mainCategoryId,
+        mainCategoryId: selectMainCategoryId,
         middleCategoryId:
         selectMiddleCategoryId != null ? selectMiddleCategoryId : 0);
     final data = ref.watch(expertListProvider(categoryPair));
@@ -84,7 +85,7 @@ class ExpertsScreenState extends ConsumerState<ExpertsScreen> {
       child: CustomScrollView(
         slivers: <Widget>[
           SliverToBoxAdapter(
-            child: SubCategoriesView(type: CATEGORY_PAIR_EXPERT_TYPE),
+            child: SubCategoriesView(type: CATEGORY_PAIR_EXPERT_TYPE,mainCategoryId: selectMainCategoryId),
           ),
           if (data is PaginationLoading)
             SliverFillRemaining(

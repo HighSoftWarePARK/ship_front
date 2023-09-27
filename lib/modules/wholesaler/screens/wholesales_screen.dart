@@ -72,7 +72,7 @@ class wholesalesScreenState extends ConsumerState<wholesalesScreen> {
       child: CustomScrollView(
         slivers: <Widget>[
           SliverToBoxAdapter(
-            child: SubCategoriesView(type: CATEGORY_PAIR_EXPERT_TYPE),
+            child: SubCategoriesView(type: CATEGORY_PAIR_EXPERT_TYPE,mainCategoryId: selectMainCategoryId),
           ),
           if (data is PaginationLoading)
             SliverFillRemaining(
